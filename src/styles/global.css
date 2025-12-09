@@ -1,0 +1,425 @@
+@import "tailwindcss";
+
+/* ===================================
+   CUSTOM THEME - Design Tokens
+   =================================== */
+
+@theme {
+  /* Colors - Light Mode Base */
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f5f5f5;
+  --color-text-primary: #0a0a0a;
+  --color-text-secondary: #525252;
+  --color-text-muted: #737373;
+  --color-border: #e5e5e5;
+  --color-border-subtle: #f0f0f0;
+  
+  /* Accent Colors */
+  --color-accent: #2563eb;
+  --color-accent-light: #3b82f6;
+  --color-accent-dark: #1d4ed8;
+  --color-glow: rgba(37, 99, 235, 0.35);
+  --color-glow-strong: rgba(37, 99, 235, 0.5);
+  
+  /* Aura Effect Colors */
+  --color-aura-1: rgba(37, 99, 235, 0.15);
+  --color-aura-2: rgba(99, 102, 241, 0.1);
+  --color-aura-3: rgba(139, 92, 246, 0.08);
+  
+  /* Typography */
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Spacing */
+  --section-padding: 6rem;
+  --section-padding-mobile: 4rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px var(--color-glow), 0 0 40px var(--color-aura-1);
+}
+
+/* ===================================
+   DARK MODE OVERRIDES
+   =================================== */
+
+.dark {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #141414;
+  --color-bg-tertiary: #1a1a1a;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #737373;
+  --color-border: #262626;
+  --color-border-subtle: #1f1f1f;
+  --color-glow: rgba(59, 130, 246, 0.5);
+  --color-glow-strong: rgba(59, 130, 246, 0.7);
+  --color-aura-1: rgba(59, 130, 246, 0.2);
+  --color-aura-2: rgba(99, 102, 241, 0.15);
+  --color-aura-3: rgba(139, 92, 246, 0.1);
+  --shadow-glow: 0 0 30px var(--color-glow), 0 0 60px var(--color-aura-1);
+}
+
+/* ===================================
+   BASE STYLES
+   =================================== */
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background-color var(--transition-base), color var(--transition-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Isolated section mode - lock scroll */
+body.scroll-locked {
+  overflow: hidden;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* ===================================
+   TYPOGRAPHY
+   =================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===================================
+   AURA EFFECTS
+   =================================== */
+
+/* Glowing border effect */
+.aura-border {
+  position: relative;
+}
+
+.aura-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-aura-2), transparent, var(--color-aura-3), var(--color-accent));
+  background-size: 300% 300%;
+  animation: aura-shift 8s ease-in-out infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  transition: opacity var(--transition-base);
+}
+
+.aura-border:hover::before {
+  opacity: 1;
+}
+
+@keyframes aura-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: var(--shadow-glow);
+  transition: box-shadow var(--transition-base);
+}
+
+.glow:hover {
+  box-shadow: 0 0 30px var(--color-glow-strong), 0 0 60px var(--color-aura-1);
+}
+
+/* Animated glow pulse */
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--color-glow), 0 0 40px var(--color-aura-1); }
+  50% { box-shadow: 0 0 30px var(--color-glow-strong), 0 0 60px var(--color-aura-2); }
+}
+
+/* Aura line - horizontal */
+.aura-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.5;
+}
+
+/* Aura line - animated */
+.aura-line-animated {
+  position: relative;
+  overflow: hidden;
+}
+
+.aura-line-animated::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-accent-light), transparent);
+  animation: line-sweep 3s ease-in-out infinite;
+}
+
+@keyframes line-sweep {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+/* ===================================
+   SCROLL ANIMATIONS
+   =================================== */
+
+/* Base state for animated elements */
+[data-animate] {
+  opacity: 0;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-animate="fade-up"] {
+  transform: translateY(30px);
+}
+
+[data-animate="fade-down"] {
+  transform: translateY(-30px);
+}
+
+[data-animate="slide-left"] {
+  transform: translateX(40px);
+}
+
+[data-animate="slide-right"] {
+  transform: translateX(-40px);
+}
+
+[data-animate="scale"] {
+  transform: scale(0.95);
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+/* Animated state - triggered by JS */
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Stagger delays */
+[data-delay="100"] { transition-delay: 100ms; }
+[data-delay="200"] { transition-delay: 200ms; }
+[data-delay="300"] { transition-delay: 300ms; }
+[data-delay="400"] { transition-delay: 400ms; }
+[data-delay="500"] { transition-delay: 500ms; }
+[data-delay="600"] { transition-delay: 600ms; }
+
+/* ===================================
+   COMPONENTS
+   =================================== */
+
+/* Card base */
+.card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
+}
+
+/* Tag/badge */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.tag:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Link with underline animation */
+.link-underline {
+  position: relative;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ===================================
+   LAYOUT UTILITIES
+   =================================== */
+
+.section {
+  padding: var(--section-padding) 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-mobile) 1rem;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Section wrapper for isolated view */
+.section-isolated {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===================================
+   SCROLLBAR STYLING
+   =================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ===================================
+   GEOMETRIC PATTERNS (for backgrounds)
+   =================================== */
+
+.bg-grid {
+  background-image: 
+    linear-gradient(var(--color-border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-subtle) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(ellipse at center, var(--color-aura-1) 0%, transparent 70%);
+}
+
+/* Hero background gradient */
+.bg-hero-gradient {
+  background: 
+    radial-gradient(ellipse at 20% 20%, var(--color-aura-1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, var(--color-aura-2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, var(--color-aura-3) 0%, transparent 70%);
+}

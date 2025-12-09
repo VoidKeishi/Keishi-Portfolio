@@ -1,0 +1,110 @@
+---
+// Abstract geometric avatar - represents the intersection of engineering and creativity
+---
+
+<div class="geometric-avatar relative w-48 h-48 md:w-64 md:h-64">
+  <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="avatar-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:var(--color-accent)"/>
+        <stop offset="100%" style="stop-color:#8b5cf6"/>
+      </linearGradient>
+      <linearGradient id="avatar-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#8b5cf6"/>
+        <stop offset="50%" style="stop-color:var(--color-accent)"/>
+        <stop offset="100%" style="stop-color:#06b6d4"/>
+      </linearGradient>
+      <filter id="glow-filter">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="95" fill="var(--color-bg-secondary)" stroke="var(--color-border)" stroke-width="1"/>
+    
+    <!-- Outer rotating ring -->
+    <circle 
+      cx="100" cy="100" r="85" 
+      fill="none" 
+      stroke="url(#avatar-grad-1)" 
+      stroke-width="2" 
+      stroke-dasharray="30 20 10 20" 
+      class="animate-spin-slow"
+      filter="url(#glow-filter)"
+    />
+    
+    <!-- Middle hexagon -->
+    <polygon 
+      points="100,25 162,62 162,138 100,175 38,138 38,62" 
+      fill="none" 
+      stroke="url(#avatar-grad-2)" 
+      stroke-width="1.5"
+      opacity="0.6"
+      class="animate-pulse-gentle"
+    />
+    
+    <!-- Inner geometric pattern - triangle -->
+    <polygon 
+      points="100,50 145,125 55,125" 
+      fill="none" 
+      stroke="var(--color-accent)" 
+      stroke-width="2"
+      filter="url(#glow-filter)"
+    />
+    
+    <!-- Inverted triangle -->
+    <polygon 
+      points="100,140 145,65 55,65" 
+      fill="none" 
+      stroke="#8b5cf6" 
+      stroke-width="1.5"
+      opacity="0.7"
+    />
+    
+    <!-- Center circle -->
+    <circle 
+      cx="100" cy="100" r="20" 
+      fill="url(#avatar-grad-1)" 
+      opacity="0.9"
+      filter="url(#glow-filter)"
+    />
+    
+    <!-- Center dot -->
+    <circle cx="100" cy="100" r="6" fill="white" opacity="0.9"/>
+    
+    <!-- Decorative dots -->
+    <circle cx="100" cy="35" r="3" fill="var(--color-accent)" class="animate-pulse"/>
+    <circle cx="155" cy="70" r="2.5" fill="#8b5cf6" class="animate-pulse" style="animation-delay: 0.5s"/>
+    <circle cx="155" cy="130" r="2.5" fill="var(--color-accent)" class="animate-pulse" style="animation-delay: 1s"/>
+    <circle cx="100" cy="165" r="3" fill="#8b5cf6" class="animate-pulse" style="animation-delay: 1.5s"/>
+    <circle cx="45" cy="130" r="2.5" fill="var(--color-accent)" class="animate-pulse" style="animation-delay: 2s"/>
+    <circle cx="45" cy="70" r="2.5" fill="#8b5cf6" class="animate-pulse" style="animation-delay: 2.5s"/>
+  </svg>
+</div>
+
+<style>
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 30s linear infinite;
+    transform-origin: center;
+  }
+  
+  .animate-pulse-gentle {
+    animation: pulse-gentle 4s ease-in-out infinite;
+    transform-origin: center;
+  }
+</style>
+

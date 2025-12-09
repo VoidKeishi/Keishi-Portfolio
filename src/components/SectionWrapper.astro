@@ -1,0 +1,32 @@
+---
+interface Props {
+  sectionName: string;
+}
+
+const { sectionName } = Astro.props;
+---
+
+<div class="section-isolated min-h-screen">
+  <!-- Back to home link -->
+  <div class="fixed top-20 left-4 z-40">
+    <a 
+      href="/"
+      class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] bg-[var(--color-bg-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-all"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      <span>Back to Home</span>
+    </a>
+  </div>
+  
+  <!-- Section content -->
+  <slot />
+</div>
+
+<style>
+  .section-isolated {
+    overflow-y: auto;
+  }
+</style>
+

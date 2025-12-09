@@ -1,0 +1,64 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  isIsolated?: boolean;
+}
+
+const { 
+  title = "Keishi | Engineer × Founder", 
+  description = "Software engineer with system-level depth and product-building ambition. Building technology that matters.",
+  isIsolated = false
+} = Astro.props;
+
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Phạm Phan Anh (Keishi)" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Fonts - Outfit for headings/body, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <title>{title}</title>
+    
+    <!-- Theme initialization script - runs before page renders to prevent flash -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class:list={[{ "scroll-locked": isIsolated }]}>
+    <Navbar isIsolated={isIsolated} />
+    
+    <main>
+      <slot />
+    </main>
+    
+    <!-- Animation script -->
+    <script>
+      import "../scripts/animations.js";
+    </script>
+  </body>
+</html>
+

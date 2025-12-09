@@ -1,0 +1,176 @@
+---
+const ventures = [
+  {
+    name: "Leaply",
+    tagline: "Vietnam's first AI-powered study abroad platform",
+    role: "Co-founder & Technical Lead",
+    program: "AI+X Global 2025",
+    description: "Helping Vietnamese students find their right-fit universities through intelligent matching. Making quality study abroad guidance accessible beyond the privileged few.",
+    techStack: ["Vector Embeddings", "Cosine Similarity", "LLM Integration", "Multi-dimensional Scoring"],
+    features: [
+      "AI matching: academic, financial, cultural, career fit",
+      "LLM-integrated mentorship features",
+      "Scalable architecture for growth"
+    ],
+    isFeatured: true,
+    color: "var(--color-accent)"
+  },
+  {
+    name: "Stealth Venture",
+    tagline: "AI-powered ERP for Vietnamese SMEs",
+    role: "Co-founder",
+    description: "Building intelligent enterprise software that brings modern operational capabilities to small and medium businesses. Details intentionally minimal.",
+    isStealth: true,
+    color: "#8b5cf6"
+  }
+];
+---
+
+<section id="ventures" class="section bg-[var(--color-bg-secondary)]">
+  <div class="container mx-auto">
+    <!-- Section header -->
+    <div class="text-center mb-16" data-animate="fade-up">
+      <span class="text-sm font-mono text-[var(--color-accent)] tracking-wider uppercase">Building</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 text-[var(--color-text-primary)]">
+        Ventures
+      </h2>
+      <p class="text-[var(--color-text-secondary)] mt-4 max-w-xl mx-auto">
+        Turning ideas into products that solve real problems
+      </p>
+    </div>
+    
+    <!-- Ventures grid -->
+    <div class="grid gap-8 lg:gap-12">
+      {ventures.map((venture, i) => (
+        <div 
+          class={`relative ${venture.isFeatured ? 'lg:grid lg:grid-cols-5 lg:gap-8' : ''}`}
+          data-animate="fade-up"
+          data-delay={String(i * 150)}
+        >
+          {venture.isFeatured ? (
+            <>
+              <!-- Featured venture - left side visual -->
+              <div class="lg:col-span-2 mb-6 lg:mb-0">
+                <div class="relative aspect-square max-w-sm mx-auto lg:max-w-none rounded-2xl bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] overflow-hidden">
+                  <!-- Abstract pattern background -->
+                  <div class="absolute inset-0 bg-grid opacity-50"></div>
+                  <div class="absolute inset-0 bg-gradient-radial"></div>
+                  
+                  <!-- Logo placeholder -->
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center">
+                      <div class="w-24 h-24 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[var(--color-accent)] to-[#8b5cf6] flex items-center justify-center glow-pulse">
+                        <span class="text-4xl font-bold text-white">L</span>
+                      </div>
+                      <span class="text-2xl font-bold text-[var(--color-text-primary)]">{venture.name}</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Decorative corners -->
+                  <div class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[var(--color-accent)] opacity-50"></div>
+                  <div class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[var(--color-accent)] opacity-50"></div>
+                </div>
+              </div>
+              
+              <!-- Featured venture - right side content -->
+              <div class="lg:col-span-3">
+                <div class="card h-full">
+                  <!-- Badge row -->
+                  <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="tag" style={`border-color: ${venture.color}; color: ${venture.color}`}>
+                      {venture.program}
+                    </span>
+                    <span class="tag">
+                      {venture.role}
+                    </span>
+                  </div>
+                  
+                  <!-- Heading -->
+                  <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] mb-2">
+                    {venture.name}
+                  </h3>
+                  <p class="text-lg text-[var(--color-accent)] mb-4">
+                    {venture.tagline}
+                  </p>
+                  
+                  <!-- Description -->
+                  <p class="text-[var(--color-text-secondary)] mb-6">
+                    {venture.description}
+                  </p>
+                  
+                  <!-- Tech stack -->
+                  <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-[var(--color-text-primary)] mb-2">Technical Scope</h4>
+                    <div class="flex flex-wrap gap-2">
+                      {venture.techStack?.map((tech) => (
+                        <span class="px-3 py-1 text-xs font-mono bg-[var(--color-bg-tertiary)] text-[var(--color-text-muted)] rounded-md border border-[var(--color-border)]">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <!-- Features -->
+                  <ul class="space-y-2">
+                    {venture.features?.map((feature) => (
+                      <li class="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
+                        <svg class="w-5 h-5 mt-0.5 flex-shrink-0 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : (
+            <!-- Stealth venture - minimal card -->
+            <div class="max-w-2xl mx-auto w-full">
+              <div class="card relative overflow-hidden">
+                <!-- Subtle pattern -->
+                <div class="absolute inset-0 bg-dots opacity-20"></div>
+                
+                <div class="relative">
+                  <!-- Badge -->
+                  <div class="flex items-center gap-2 mb-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-[#8b5cf6]/10 text-[#8b5cf6] rounded-full border border-[#8b5cf6]/20">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      Stealth Mode
+                    </span>
+                    <span class="tag">
+                      {venture.role}
+                    </span>
+                  </div>
+                  
+                  <!-- Content -->
+                  <h3 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">
+                    {venture.name}
+                  </h3>
+                  <p class="text-[var(--color-text-muted)] mb-4">
+                    {venture.tagline}
+                  </p>
+                  <p class="text-sm text-[var(--color-text-secondary)]">
+                    {venture.description}
+                  </p>
+                  
+                  <!-- Stay tuned indicator -->
+                  <div class="mt-6 flex items-center gap-2 text-sm text-[#8b5cf6]">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8b5cf6] opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-[#8b5cf6]"></span>
+                    </span>
+                    <span class="font-medium">Stay tuned</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
