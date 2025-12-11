@@ -118,35 +118,19 @@ h1, h2, h3, h4, h5, h6 {
    AURA EFFECTS
    =================================== */
 
-/* Glowing border effect */
+/* Refined border effect - subtle, no animation */
+.refined-border {
+  position: relative;
+  transition: border-color var(--transition-base);
+}
+
+.refined-border:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* Legacy aura-border - simplified for cleaner look */
 .aura-border {
   position: relative;
-}
-
-.aura-border::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-aura-2), transparent, var(--color-aura-3), var(--color-accent));
-  background-size: 300% 300%;
-  animation: aura-shift 8s ease-in-out infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.6;
-  transition: opacity var(--transition-base);
-}
-
-.aura-border:hover::before {
-  opacity: 1;
-}
-
-@keyframes aura-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
 /* Glow effect */
@@ -159,14 +143,24 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 30px var(--color-glow-strong), 0 0 60px var(--color-aura-1);
 }
 
-/* Animated glow pulse */
-.glow-pulse {
-  animation: glow-pulse 3s ease-in-out infinite;
+/* Subtle glow - no animation, just a soft shadow */
+.glow-subtle {
+  box-shadow: 0 0 40px var(--color-aura-1);
 }
 
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px var(--color-glow), 0 0 40px var(--color-aura-1); }
-  50% { box-shadow: 0 0 30px var(--color-glow-strong), 0 0 60px var(--color-aura-2); }
+/* Legacy glow-pulse class - now static for refined look */
+.glow-pulse {
+  /* Removed animation for cleaner aesthetic */
+}
+
+/* Slow spin animation for decorative elements */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
 }
 
 /* Aura line - horizontal */
@@ -250,19 +244,18 @@ h1, h2, h3, h4, h5, h6 {
    COMPONENTS
    =================================== */
 
-/* Card base */
+/* Card base - refined, subtle */
 .card {
   background-color: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all var(--transition-base);
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-accent);
+  border-color: var(--color-text-muted);
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
 }
 
 /* Tag/badge */

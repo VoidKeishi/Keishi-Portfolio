@@ -36,3 +36,4 @@ document.addEventListener('astro:page-load', initScrollAnimations);
 // Export for potential manual use
 export { initScrollAnimations };
 
+

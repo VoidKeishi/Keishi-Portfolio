@@ -1,32 +1,39 @@
 ---
-import GeometricAvatar from "./GeometricAvatar.astro";
-
 const stats = [
-  { value: "HUST '25", label: "Computer Science" },
-  { value: "Samsung", label: "Project Leader" },
-  { value: "2", label: "Startups Founded" },
+  { value: "3.4", label: "GPA / 4.0" },
+  { value: "2 years+", label: "SWE experience" },
+  { value: "2", label: "Startups founded" },
 ];
 ---
 
 <section id="about" class="section bg-[var(--color-bg-secondary)]">
   <div class="container mx-auto">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <!-- Left: Avatar and Stats -->
-      <div class="flex flex-col items-center lg:items-start gap-8" data-animate="slide-right">
-        <GeometricAvatar />
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Left: Avatar and Stats - Centered layout -->
+      <div class="flex flex-col items-center gap-10" data-animate="slide-right">
+        <!-- Profile Photo - Larger, elegant frame -->
+        <div class="relative">
+          <div class="w-64 h-64 md:w-80 md:h-80 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-2xl overflow-hidden shadow-xl ring-1 ring-[var(--color-border)]">
+            <img 
+              src="/img/avatar.jpeg" 
+              alt="Phạm Phan Anh (Keishi)" 
+              class="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
+        </div>
         
-        <!-- Stats row -->
-        <div class="flex flex-wrap justify-center lg:justify-start gap-6">
+        <!-- Stats row - Always centered below image -->
+        <div class="flex items-center justify-center gap-8 md:gap-10">
           {stats.map((stat, i) => (
             <div 
-              class="text-center lg:text-left"
+              class="text-center"
               data-animate="fade-up"
               data-delay={String((i + 2) * 100)}
             >
-              <div class="text-xl md:text-2xl font-bold text-[var(--color-accent)]">
+              <div class="text-2xl md:text-3xl font-semibold text-[var(--color-text-primary)]">
                 {stat.value}
               </div>
-              <div class="text-sm text-[var(--color-text-muted)]">
+              <div class="text-xs md:text-sm text-[var(--color-text-muted)] mt-1">
                 {stat.label}
               </div>
             </div>
@@ -67,4 +74,3 @@ const stats = [
     </div>
   </div>
 </section>
-
