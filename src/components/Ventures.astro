@@ -5,41 +5,26 @@ const ventures = [
     tagline: "Vietnam's first AI-powered study abroad platform",
     role: "Co-founder & Technical Lead",
     badge: "AI+X Global 2025",
-    badgeColor: "var(--color-accent)",
-    description: "Helping Vietnamese students find their right-fit universities through intelligent matching. Making quality study abroad guidance accessible beyond the privileged few.",
-    techStack: ["Vector Embeddings", "Cosine Similarity", "LLM Integration", "Multi-dimensional Scoring"],
-    features: [
-      "AI matching: academic, financial, cultural, career fit",
-      "LLM-integrated mentorship features",
-      "Scalable architecture for growth"
-    ],
+    techStack: ["Vector Embeddings", "Cosine Similarity", "LLM Integration"],
     image: "/img/leaply-logo.png",
-    accentColor: "var(--color-accent)"
+    isStealth: false
   },
   {
     name: "Stealth Venture",
     tagline: "AI-powered ERP for Vietnamese SMEs",
     role: "Co-founder",
     badge: "Stealth Mode",
-    badgeColor: "#8b5cf6",
-    description: "Building intelligent enterprise software that brings modern operational capabilities to small and medium businesses. Details intentionally minimal.",
-    techStack: ["AI/ML", "Enterprise Architecture", "Cloud Infrastructure"],
-    features: [
-      "Intelligent automation for SME operations",
-      "Vietnamese market focused",
-      "Coming soon"
-    ],
+    techStack: ["AI/ML", "Enterprise Architecture", "Cloud"],
     image: "/img/erp.png",
-    accentColor: "#8b5cf6",
     isStealth: true
   }
 ];
 ---
 
-<section id="ventures" class="section bg-[var(--color-bg-secondary)]">
+<section id="ventures" class="section bg-[var(--color-bg-primary)]">
   <div class="container mx-auto">
     <!-- Section header -->
-    <div class="text-center mb-16" data-animate="fade-up">
+    <div class="text-center mb-12 lg:mb-16" data-animate="fade-up">
       <span class="text-sm font-mono text-[var(--color-accent)] tracking-wider uppercase">Building</span>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 text-[var(--color-text-primary)]">
         Ventures
@@ -49,101 +34,120 @@ const ventures = [
       </p>
     </div>
     
-    <!-- Ventures - Consistent layout for both -->
-    <div class="space-y-16 lg:space-y-20">
+    <!-- Ventures - Compact Horizontal Cards -->
+    <div class="space-y-6 max-w-4xl mx-auto">
       {ventures.map((venture, i) => (
-        <div 
-          class="lg:grid lg:grid-cols-5 lg:gap-12 items-center"
+        <article 
+          class={`venture-card group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] transition-all duration-300 hover:border-[var(--color-accent)]/40 ${venture.isStealth ? 'opacity-80' : ''}`}
           data-animate="fade-up"
-          data-delay={String(i * 150)}
+          data-delay={String(i * 100)}
         >
-          <!-- Left: Logo/Image -->
-          <div class="lg:col-span-2 mb-8 lg:mb-0">
-            <div class="flex items-center justify-center">
-              <div class="text-center">
-                <div class="w-40 h-40 md:w-48 md:h-48 lg:w-44 lg:h-44 xl:w-52 xl:h-52 mx-auto mb-5">
+          <!-- Subtle hover glow -->
+          <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div class="relative p-5 md:p-6 lg:p-8">
+            <!-- Single row layout: Logo | Content | Badges -->
+            <div class="flex items-center gap-5 md:gap-6 lg:gap-8">
+              <!-- Logo - compact, vertically centered -->
+              <div class={`flex-shrink-0 ${venture.isStealth ? 'opacity-50' : ''}`}>
+                <div class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 relative">
                   <img 
                     src={venture.image}
                     alt={`${venture.name} Logo`}
-                    class="w-full h-full object-contain"
+                    class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <span class="text-xl md:text-2xl font-semibold text-[var(--color-text-primary)] tracking-tight">{venture.name}</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Right: Content -->
-          <div class="lg:col-span-3">
-            <div class="card h-full">
-              <!-- Badge row -->
-              <div class="flex flex-wrap items-center gap-2 mb-4">
-                <span 
-                  class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border"
-                  style={`background-color: ${venture.badgeColor}10; color: ${venture.badgeColor}; border-color: ${venture.badgeColor}30`}
-                >
-                  {venture.isStealth && (
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  )}
-                  {venture.badge}
-                </span>
-                <span class="tag">
-                  {venture.role}
-                </span>
               </div>
               
-              <!-- Heading -->
-              <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] mb-2">
-                {venture.name}
-              </h3>
-              <p class="text-base md:text-lg mb-4" style={`color: ${venture.accentColor}`}>
-                {venture.tagline}
-              </p>
-              
-              <!-- Description -->
-              <p class="text-[var(--color-text-secondary)] mb-6">
-                {venture.description}
-              </p>
-              
-              <!-- Tech stack -->
-              <div class="mb-6">
-                <h4 class="text-sm font-semibold text-[var(--color-text-primary)] mb-2">Technical Scope</h4>
-                <div class="flex flex-wrap gap-2">
+              <!-- Main content - name, tagline, tech stack -->
+              <div class="flex-1 min-w-0">
+                <!-- Name and badges row -->
+                <div class="flex flex-wrap items-center gap-2 md:gap-3 mb-1">
+                  <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--color-text-primary)] tracking-tight">
+                    {venture.name}
+                  </h3>
+                  
+                  <!-- Badges - inline on larger screens -->
+                  <div class="hidden sm:flex items-center gap-2">
+                    <span 
+                      class={`inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] md:text-xs font-medium rounded-full border ${venture.isStealth ? 'bg-[var(--color-bg-tertiary)] border-[var(--color-border)] text-[var(--color-text-muted)]' : 'bg-[var(--color-accent)]/10 border-[var(--color-accent)]/30 text-[var(--color-accent)]'}`}
+                    >
+                      {venture.isStealth && (
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      )}
+                      {venture.badge}
+                    </span>
+                    <span class="px-2 py-0.5 text-[10px] md:text-xs font-mono bg-[var(--color-bg-tertiary)] text-[var(--color-text-muted)] rounded border border-[var(--color-border)]">
+                      {venture.role}
+                    </span>
+                  </div>
+                </div>
+                
+                <!-- Tagline -->
+                <p class="text-sm md:text-base text-[var(--color-accent)] mb-3 leading-snug">
+                  {venture.tagline}
+                </p>
+                
+                <!-- Tech stack pills - inline -->
+                <div class="flex flex-wrap gap-1.5 md:gap-2">
                   {venture.techStack.map((tech) => (
-                    <span class="px-3 py-1 text-xs font-mono bg-[var(--color-bg-tertiary)] text-[var(--color-text-muted)] rounded-md border border-[var(--color-border)]">
+                    <span class="px-2 py-0.5 text-[10px] md:text-xs font-mono bg-[var(--color-bg-primary)] text-[var(--color-text-muted)] rounded border border-[var(--color-border)] transition-colors duration-200 hover:border-[var(--color-accent)]/40">
                       {tech}
                     </span>
                   ))}
                 </div>
+                
+                <!-- Mobile badges - shown below on small screens -->
+                <div class="flex items-center gap-2 mt-3 sm:hidden">
+                  <span 
+                    class={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-full border ${venture.isStealth ? 'bg-[var(--color-bg-tertiary)] border-[var(--color-border)] text-[var(--color-text-muted)]' : 'bg-[var(--color-accent)]/10 border-[var(--color-accent)]/30 text-[var(--color-accent)]'}`}
+                  >
+                    {venture.badge}
+                  </span>
+                  <span class="px-2 py-0.5 text-[10px] font-mono bg-[var(--color-bg-tertiary)] text-[var(--color-text-muted)] rounded border border-[var(--color-border)]">
+                    {venture.role}
+                  </span>
+                </div>
               </div>
               
-              <!-- Features -->
-              <ul class="space-y-2">
-                {venture.features.map((feature) => (
-                  <li class="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
-                    <svg class="w-5 h-5 mt-0.5 flex-shrink-0" style={`color: ${venture.accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
+              <!-- Stealth indicator - right side -->
               {venture.isStealth && (
-                <div class="mt-6 flex items-center gap-2 text-sm" style={`color: ${venture.accentColor}`}>
+                <div class="hidden md:flex items-center gap-2 text-[var(--color-text-muted)]">
                   <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={`background-color: ${venture.accentColor}`}></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2" style={`background-color: ${venture.accentColor}`}></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-accent)]"></span>
                   </span>
-                  <span class="font-medium">Stay tuned</span>
+                  <span class="text-xs font-medium whitespace-nowrap">Coming soon</span>
                 </div>
               )}
             </div>
           </div>
-        </div>
+          
+          <!-- Bottom accent line on hover -->
+          <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .venture-card {
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+  }
+  
+  .venture-card:hover {
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.12), 0 0 40px -15px var(--color-accent);
+    transform: translateY(-1px);
+  }
+  
+  .dark .venture-card {
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark .venture-card:hover {
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3), 0 0 50px -20px rgba(201, 166, 107, 0.12);
+  }
+</style>

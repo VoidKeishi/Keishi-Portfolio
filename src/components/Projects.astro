@@ -22,12 +22,12 @@ const projects = [
       "Real-time evolution display"
     ],
     github: "https://github.com/VoidKeishi",
-    color: "#8b5cf6"
+    color: "#9a7b4f"
   }
 ];
 ---
 
-<section id="projects" class="section">
+<section id="projects" class="section paper-texture">
   <div class="container mx-auto">
     <!-- Section header -->
     <div class="text-center mb-16" data-animate="fade-up">
@@ -52,7 +52,7 @@ const projects = [
             <!-- Gradient accent top -->
             <div 
               class="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={`background: linear-gradient(90deg, ${project.color}, #8b5cf6)`}
+              style={`background: linear-gradient(90deg, ${project.color}, var(--color-accent-light))`}
             ></div>
             
             <!-- Header with icon -->
@@ -126,5 +126,6 @@ const projects = [
     </div>
   </div>
 </section>
+
 
 

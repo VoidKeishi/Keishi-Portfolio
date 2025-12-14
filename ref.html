@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keishi - Business Card</title>
+  <link rel="icon" type="image/x-icon" href="card.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      padding: 60px 20px;
+      font-family: system-ui, sans-serif;
+    }
+
+    .card-label {
+      color: #666;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Base card dimensions: 90×50mm × 3 = 270×150mm */
+    .card {
+      width: 270mm;
+      height: 150mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ================================
+       FRONT SIDE - Warm, Minimal
+       ================================ */
+    .card-front {
+      background: #f5f1e8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 36mm 42mm;
+      border-radius: 6mm;
+    }
+
+    /* Subtle paper texture overlay */
+    .card-front::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      border-radius: 6mm;
+    }
+
+    .front-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6mm;
+    }
+
+    .front-name {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 14mm;
+      font-weight: 400;
+      color: #1a1a1a;
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+
+    .front-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 4.5mm;
+      font-weight: 400;
+      color: #5c5c5c;
+      letter-spacing: 0.05em;
+      margin-top: 2mm;
+    }
+
+    .front-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5mm;
+      margin-top: 4mm;
+    }
+
+    .front-contact span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 4mm;
+      font-weight: 400;
+      color: #3d3d3d;
+      letter-spacing: 0.02em;
+    }
+
+    .front-qr {
+      position: relative;
+      z-index: 1;
+      width: 36mm;
+      height: 36mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .front-qr img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* ================================
+       BACK SIDE - Dark Paper (inverted front)
+       ================================ */
+    .card-back {
+      background: #2c2620;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24mm 36mm;
+      border-radius: 6mm;
+      position: relative;
+    }
+
+    /* Paper texture overlay (same as front, adjusted for dark) */
+    .card-back::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      border-radius: 6mm;
+    }
+
+    .code-block {
+      position: relative;
+      z-index: 1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 5mm;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    /* Warm monochrome palette - cream on dark paper */
+    .code-keyword {
+      color: #d4c4a8;
+    }
+
+    .code-type {
+      color: #c9a66b;
+    }
+
+    .code-function {
+      color: #f5f1e8;
+      font-weight: 500;
+    }
+
+    .code-string {
+      color: #b8a88a;
+    }
+
+    .code-comment {
+      color: #6b6358;
+      font-style: italic;
+    }
+
+    .code-punctuation {
+      color: #a89880;
+    }
+
+    .code-param {
+      color: #e8dcc8;
+    }
+
+    .back-signature {
+      position: relative;
+      z-index: 1;
+      margin-top: 14mm;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 5mm;
+      font-weight: 400;
+      color: #f5f1e8;
+      letter-spacing: 0.15em;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .card-label {
+        display: none;
+      }
+      .card {
+        page-break-after: always;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- FRONT SIDE -->
+  <div class="card-wrapper">
+    <div class="card-label">Front</div>
+    <div class="card card-front">
+      <div class="front-content">
+        <div>
+          <div class="front-name">Keishi</div>
+          <div class="front-title">Software Engineer & Founder</div>
+        </div>
+        <div class="front-contact">
+          <span>+84 904 954 246</span>
+          <span>phananha4@gmail.com</span>
+          <span>Hanoi, Vietnam</span>
+        </div>
+      </div>
+      <div class="front-qr">
+        <img src="keishi-QR.png" alt="QR Code" />
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK SIDE -->
+  <div class="card-wrapper">
+    <div class="card-label">Back</div>
+    <div class="card card-back">
+      <pre class="code-block"><span class="code-keyword">void</span> <span class="code-function">keishi</span><span class="code-punctuation">(</span><span class="code-keyword">void</span> <span class="code-punctuation">*</span><span class="code-param">challenge</span><span class="code-punctuation">) {</span>
+    <span class="code-punctuation">(</span><span class="code-keyword">void</span><span class="code-punctuation">)</span><span class="code-param">challenge</span><span class="code-punctuation">;</span>  <span class="code-comment">// accepted</span>
+    <span class="code-function">bind</span><span class="code-punctuation">(</span><span class="code-type">email</span><span class="code-punctuation">,</span> <span class="code-string">"phananha4@gmail.com"</span><span class="code-punctuation">);</span>
+    <span class="code-function">bind</span><span class="code-punctuation">(</span><span class="code-type">phone</span><span class="code-punctuation">,</span> <span class="code-string">"+84 904 954 246"</span><span class="code-punctuation">);</span>
+    <span class="code-function">execute</span><span class="code-punctuation">();</span>
+<span class="code-punctuation">}</span></pre>
+      <div class="back-signature">Keishi</div>
+    </div>
+  </div>
+</body>
+</html>

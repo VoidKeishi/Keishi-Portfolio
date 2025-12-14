@@ -6,7 +6,7 @@
   id="theme-toggle"
   type="button"
   aria-label="Toggle theme"
-  class="relative w-10 h-10 flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] hover:border-[var(--color-accent)] transition-colors duration-200"
+  class="relative w-10 h-10 flex items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] hover:border-[var(--color-accent)] transition-colors duration-200"
 >
   <!-- Sun icon (shown in dark mode) -->
   <svg
@@ -56,5 +56,6 @@
   document.addEventListener('DOMContentLoaded', initThemeToggle);
   document.addEventListener('astro:page-load', initThemeToggle);
 </script>
+
 
 

@@ -5,45 +5,51 @@
    =================================== */
 
 @theme {
-  /* Colors - Light Mode Base */
-  --color-bg-primary: #fafafa;
-  --color-bg-secondary: #ffffff;
-  --color-bg-tertiary: #f5f5f5;
-  --color-text-primary: #0a0a0a;
-  --color-text-secondary: #525252;
-  --color-text-muted: #737373;
-  --color-border: #e5e5e5;
-  --color-border-subtle: #f0f0f0;
+  /* Colors - Light Mode Base (Warm Paper Stationery) */
+  --color-bg-primary: #f5f1e8;
+  --color-bg-secondary: #faf8f3;
+  --color-bg-tertiary: #ebe7de;
+  --color-text-primary: #2c2620;
+  --color-text-secondary: #5c5c5c;
+  --color-text-muted: #8a8378;
+  --color-border: #e8e2d6;
+  --color-border-subtle: #f0ebe2;
   
-  /* Accent Colors */
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-accent-dark: #1d4ed8;
-  --color-glow: rgba(37, 99, 235, 0.35);
-  --color-glow-strong: rgba(37, 99, 235, 0.5);
+  /* Accent Colors (Warm Gold) */
+  --color-accent: #c9a66b;
+  --color-accent-light: #d4b67e;
+  --color-accent-dark: #b8935a;
+  --color-glow: rgba(201, 166, 107, 0.35);
+  --color-glow-strong: rgba(201, 166, 107, 0.5);
   
-  /* Aura Effect Colors */
-  --color-aura-1: rgba(37, 99, 235, 0.15);
-  --color-aura-2: rgba(99, 102, 241, 0.1);
-  --color-aura-3: rgba(139, 92, 246, 0.08);
+  /* Warm Aura Effect Colors */
+  --color-aura-1: rgba(201, 166, 107, 0.15);
+  --color-aura-2: rgba(184, 147, 90, 0.1);
+  --color-aura-3: rgba(212, 182, 126, 0.08);
   
   /* Typography */
-  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Libre Baskerville', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
-  /* Spacing */
-  --section-padding: 6rem;
-  --section-padding-mobile: 4rem;
+  /* Spacing - Generous whitespace */
+  --section-padding: 7rem;
+  --section-padding-mobile: 5rem;
+  
+  /* Border Radius - Warm, soft corners */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  /* Shadows - Warmer tones */
+  --shadow-sm: 0 1px 2px 0 rgba(44, 38, 32, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(44, 38, 32, 0.08), 0 2px 4px -2px rgba(44, 38, 32, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(44, 38, 32, 0.1), 0 4px 6px -4px rgba(44, 38, 32, 0.08);
   --shadow-glow: 0 0 20px var(--color-glow), 0 0 40px var(--color-aura-1);
 }
 
@@ -52,19 +58,21 @@
    =================================== */
 
 .dark {
+  /* Cool neutral charcoal palette - Linear/Vercel inspired */
   --color-bg-primary: #0a0a0a;
   --color-bg-secondary: #141414;
   --color-bg-tertiary: #1a1a1a;
   --color-text-primary: #fafafa;
   --color-text-secondary: #a3a3a3;
-  --color-text-muted: #737373;
+  --color-text-muted: #666666;
   --color-border: #262626;
   --color-border-subtle: #1f1f1f;
-  --color-glow: rgba(59, 130, 246, 0.5);
-  --color-glow-strong: rgba(59, 130, 246, 0.7);
-  --color-aura-1: rgba(59, 130, 246, 0.2);
-  --color-aura-2: rgba(99, 102, 241, 0.15);
-  --color-aura-3: rgba(139, 92, 246, 0.1);
+  /* Gold accent glows pop beautifully against dark neutral */
+  --color-glow: rgba(201, 166, 107, 0.4);
+  --color-glow-strong: rgba(201, 166, 107, 0.6);
+  --color-aura-1: rgba(201, 166, 107, 0.15);
+  --color-aura-2: rgba(201, 166, 107, 0.1);
+  --color-aura-3: rgba(201, 166, 107, 0.05);
   --shadow-glow: 0 0 30px var(--color-glow), 0 0 60px var(--color-aura-1);
 }
 
@@ -74,7 +82,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
 }
 
 body {
@@ -94,7 +102,11 @@ body.scroll-locked {
 /* Selection styling */
 ::selection {
   background-color: var(--color-accent);
-  color: white;
+  color: #0a0a0a;
+}
+
+.dark ::selection {
+  color: #0a0a0a;
 }
 
 /* ===================================
@@ -102,13 +114,30 @@ body.scroll-locked {
    =================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-weight: 400;
   line-height: 1.2;
   color: var(--color-text-primary);
+  letter-spacing: 0.01em;
 }
 
+h1 {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+/* Warm text accent - no gradient, solid warm gold */
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* Legacy gradient class - updated for warm palette */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 50%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -244,28 +273,29 @@ h1, h2, h3, h4, h5, h6 {
    COMPONENTS
    =================================== */
 
-/* Card base - refined, subtle */
+/* Card base - warm, tactile */
 .card {
   background-color: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
-  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
   transition: all var(--transition-base);
 }
 
 .card:hover {
-  border-color: var(--color-text-muted);
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
 }
 
-/* Tag/badge */
+/* Tag/badge - softer corners */
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: 0.375rem 0.875rem;
   font-size: 0.75rem;
+  font-family: var(--font-mono);
   font-weight: 500;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   background-color: var(--color-bg-tertiary);
   color: var(--color-text-secondary);
   border: 1px solid var(--color-border);
@@ -275,24 +305,27 @@ h1, h2, h3, h4, h5, h6 {
 .tag:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+  background-color: var(--color-bg-secondary);
 }
 
-/* Button base */
+/* Button base - warm corners */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-mono);
   font-weight: 500;
-  border-radius: 8px;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   cursor: pointer;
 }
 
 .btn-primary {
   background-color: var(--color-accent);
-  color: white;
+  color: #0a0a0a;
 }
 
 .btn-primary:hover {
@@ -382,11 +415,11 @@ h1, h2, h3, h4, h5, h6 {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
+  background: var(--color-accent);
 }
 
 /* ===================================
@@ -415,4 +448,13 @@ h1, h2, h3, h4, h5, h6 {
     radial-gradient(ellipse at 20% 20%, var(--color-aura-1) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 80%, var(--color-aura-2) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, var(--color-aura-3) 0%, transparent 70%);
+}
+
+/* ===================================
+   SUBTLE TEXTURE (replaces paper-texture)
+   =================================== */
+
+/* Clean, minimal approach - no fake textures */
+.paper-texture {
+  /* Removed fake paper noise - keeping class for backwards compatibility */
 }
